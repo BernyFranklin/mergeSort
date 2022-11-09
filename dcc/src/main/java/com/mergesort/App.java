@@ -1,6 +1,7 @@
 package com.mergesort;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 /**
  * Give a linked list, sort in O(n log n) time and constant space
@@ -14,23 +15,26 @@ public class App
     public static void main( String[] args )
     {
         LinkedList<Integer> list = new LinkedList<Integer>();
-        list.add(4);
-        list.add(1);
-        list.add(-3);
-        list.add(99);
+        Random rand = new Random();
+
+        for (int i = 0; i < 20; i++) {
+            list.add(rand.nextInt(1000));
+        }
+    
         System.out.printf("\nList Size: %d", list.size());
         System.out.printf("\nOriginal List: ");
 
         for(Integer item: list) {
-            System.out.printf("%d\t", item);
+            System.out.printf("\n%d", item);
         }
 
         mergeSort(list);
 
         System.out.printf("\nSorted list: ");
         for (Integer item: list) {
-            System.out.printf("%d\t", item);
+            System.out.printf("\n%d", item);
         }
+        System.out.println();
     }
 
     private static void mergeSort(LinkedList<Integer> inputList) {
@@ -51,19 +55,9 @@ public class App
         for (int i = 0; i < middleIndex; i++) {
             leftList.add(inputList.get(i));
         }
-        // Test Print
-        System.out.printf("\nLeft list: ");
-        for (int item: leftList) {
-            System.out.printf("%d\t", item);
-        }
         // Populate right
         for (int j = middleIndex; j < inputLength; j++) {
             rightList.add(inputList.get(j));
-        }
-        // Test Print
-        System.out.printf("\nRight list: ");
-        for (int item: rightList) {
-            System.out.printf("%d\t", item);
         }
         // Use recursion to keep splitting
         mergeSort(leftList);
