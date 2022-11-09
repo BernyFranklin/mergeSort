@@ -24,9 +24,45 @@ public class App
         for(Integer item: list) {
             System.out.printf("%d\t", item);
         }
+
+        mergeSort(list);
     }
 
     private static void mergeSort(LinkedList<Integer> inputList) {
+        // Get size of list
         int inputLength = inputList.size();
+        // If size only has 1 element, return
+        if (inputLength < 2) {
+            return;
+        }
+        // Establish middle index
+        int middleIndex = inputLength / 2;
+
+        // Split array into two arrays
+        LinkedList<Integer> leftList = new LinkedList<Integer>();
+        LinkedList<Integer> rightList = new LinkedList<Integer>();
+
+        // Populate left
+        for (int i = 0; i < middleIndex; i++) {
+            leftList.add(inputList.get(i));
+        }
+        // Test Print
+        System.out.printf("\nLeft list: ");
+        for (int item: leftList) {
+            System.out.printf("%d\t", item);
+        }
+        // Populate right
+        for (int j = middleIndex; j < inputLength; j++) {
+            rightList.add(inputList.get(j));
+        }
+        // Test Print
+        System.out.printf("\nRight list: ");
+        for (int item: rightList) {
+            System.out.printf("%d\t", item);
+        }
+        // Use recursion to keep splitting
+        mergeSort(leftList);
+        mergeSort(rightList);
+
     }
 }
