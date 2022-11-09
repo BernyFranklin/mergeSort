@@ -1,7 +1,9 @@
 package com.mergesort;
 
+import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * Give a linked list, sort in O(n log n) time and constant space
@@ -14,11 +16,29 @@ public class App
 {
     public static void main( String[] args )
     {
+        int userInput = 0;
+        boolean isValid;
+        Scanner scan = new Scanner(System.in);
+        do{
+            try{
+                isValid = true;
+                System.out.printf("\nEnter size of list: ");
+                userInput = scan.nextInt();
+                System.out.println();
+            }
+            catch(InputMismatchException e) {
+                System.out.printf("Numeric input only, please try again");
+                isValid = false;
+                scan.nextLine();
+            }
+        }
+        while(!isValid);
+
         LinkedList<Integer> list = new LinkedList<Integer>();
         Random rand = new Random();
 
-        for (int i = 0; i < 20; i++) {
-            list.add(rand.nextInt(1000));
+        for (int i = 0; i < userInput; i++) {
+            list.add(rand.nextInt(100000));
         }
     
         System.out.printf("\nList Size: %d", list.size());
@@ -35,6 +55,7 @@ public class App
             System.out.printf("\n%d", item);
         }
         System.out.println();
+        scan.close();
     }
 
     private static void mergeSort(LinkedList<Integer> inputList) {
