@@ -1,0 +1,19 @@
+List of steps for creating a mergeSort algorithm
+-   Establish size of inputList
+-   If the size is < 2, return
+-   Establish the middleIndex by dividing the size by 2
+-   Create two new temp lists left and right
+-   Populate left by adding list[0]-list[middleIndex]
+-   Populate right by adding list[middleIndex] - list[size]
+-   Send left list back to beginning 
+-   Send right list back to beginning
+-   Send inputList, leftList, and rightList to merge()
+
+List of steps for creating merge algorithm
+-   Get sizes of left and right list
+-   Initialize counters for left, right, and list indecies
+-   Create a while loop to compare left[index] <= right[index] while index < sizes
+-   If left is smaller, add to list
+-   If right is smaller, add to list
+-   Increment listIndex
+-   Create two loops to collect stragglers and increment counters accordingly
