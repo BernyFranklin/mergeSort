@@ -26,6 +26,11 @@ public class App
         }
 
         mergeSort(list);
+
+        System.out.printf("\nSorted list: ");
+        for (Integer item: list) {
+            System.out.printf("%d\t", item);
+        }
     }
 
     private static void mergeSort(LinkedList<Integer> inputList) {
@@ -63,6 +68,51 @@ public class App
         // Use recursion to keep splitting
         mergeSort(leftList);
         mergeSort(rightList);
+
+        // Merge
+        merge(inputList, leftList, rightList);
+    }
+
+    private static void merge(LinkedList<Integer> inputList, LinkedList<Integer> leftHalf, LinkedList<Integer> rightHalf) {
+        // Get size of left and right
+        int leftSize = leftHalf.size();
+        int rightSize = rightHalf.size();
+        // Set up counters
+        int listIndex = 0;
+        int leftIndex = 0;
+        int rightIndex = 0;
+
+        // Start comparing values
+        while ((leftIndex < leftSize) && (rightIndex < rightSize)) {
+            // Left < Right
+            if (leftHalf.get(leftIndex) <= (rightHalf.get(rightIndex))) {
+                // Add element to list
+                inputList.set(listIndex, leftHalf.get(leftIndex));
+                // Move to next index in left
+                leftIndex++;
+            }
+            // Right < Left
+            else {
+                // Add element to list
+                inputList.set(listIndex, rightHalf.get(rightIndex));
+                // Move to next element in right
+                rightIndex++;
+            }
+            // Move to next element in list
+            listIndex++;
+        }
+        // Clean up left if elements remain
+        while (leftIndex < leftSize) {
+            inputList.set(listIndex, leftHalf.get(leftIndex));
+            leftIndex++;
+            listIndex++;
+        }
+        // Clean up right if elements remain
+        while (rightIndex < rightSize) {
+            inputList.set(listIndex, rightHalf.get(rightIndex));
+            rightIndex++;
+            listIndex++;
+        }
 
     }
 }
